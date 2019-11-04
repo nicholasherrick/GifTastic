@@ -1,27 +1,37 @@
 $(document).ready(function() {
 
 var topics = ["tacos", "burgers", "pizza", "salad", "pasta", "candy", "cake", "sandwiches", "sushi", "burritos", "chicken wings", "ramen"];
-var food = $(this).attr("data-name");
-var apiKey = "rQ6AHv1YvrXWOwMEJYDSe60UnMh4AgIB";
-var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + food + "&api_key=" + apiKey + "&limit=10";
+var buttonsDiv = $("#buttons-div");
 
-for (var i = 0; i < topics.length; i++) {
-    newButton.addClass("new-button");
-    newButton.attr("data-name", topics[i]);
-    newButton.text(topics[i]);
-    buttonsDiv.append(newButton);
-}
 
-function test() {
-$.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function(response) {
-        console.log(response);
-    });
+function showButtons() {
+    for (var i = 0; i < topics.length; i++) {
+        var newButton = $("<Button type='button' class='btn btn-secondary btn-lg'>")
+        newButton.addClass("new-button");
+        newButton.attr("data-name", topics[i]);
+        newButton.text(topics[i]);
+        buttonsDiv.append(newButton);
+    }
+};
+
+function getFood() {
+    var food = $(this).attr("data-name");
+    var apiKey = "rQ6AHv1YvrXWOwMEJYDSe60UnMh4AgIB";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + food + "&api_key=" + apiKey + "&limit=10";
+    console.log(queryURL);
+    $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
+            console.log(response);
+        });
 
 };
-test();
+
+$(document).on("click", ".new-button", getFood);
+
+// test();
+showButtons();
 });
 
 
