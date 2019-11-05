@@ -2,6 +2,36 @@ $(document).ready(function() {
 
 var topics = ["tacos", "burgers", "pizza", "salad", "pasta", "candy", "cake", "sandwiches", "sushi", "burritos", "chicken wings", "ramen"];
 var buttonsDiv = $("#buttons-div");
+var blankSpace = $(".blank");
+
+$("#clear-gifs").on("click", function() {
+    $("#gif-box").empty();
+    $("#gif-box").append($("<h1 class='blank'>Hello World!</h1>"));
+    $("#gif-box").append($("<h1 class='blank'>Hello World!</h1>"));
+    $("#gif-box").append($("<h1 class='blank'>Hello World!</h1>"));
+    $("#gif-box").append($("<h1 class='blank'>Hello World!</h1>"));
+    $("#gif-box").append($("<h1 class='blank'>Hello World!</h1>"));
+    blankSpace.show();
+});
+
+$("#clear-buttons").on("click", function() {
+    topics.length = 0;
+    buttonsDiv.empty();
+});
+
+$("#clear-all").on("click", function() {
+    topics.length = 0;
+    buttonsDiv.empty();
+    $("#gif-box").empty();
+    $("#food-input").val("");
+    $("#gif-box").append($("<h1 class='blank'>Hello World!</h1>"));
+    $("#gif-box").append($("<h1 class='blank'>Hello World!</h1>"));
+    $("#gif-box").append($("<h1 class='blank'>Hello World!</h1>"));
+    $("#gif-box").append($("<h1 class='blank'>Hello World!</h1>"));
+    $("#gif-box").append($("<h1 class='blank'>Hello World!</h1>"));
+    blankSpace.show();
+    showButtons();
+});
 
 
 function showButtons() {
@@ -30,16 +60,33 @@ function getFood() {
                 var newDiv = $("<div>");
                 var gifBox = $("#gif-box");
                 var text = $("<p>").text("Rating: " + rating);
-                var image = $("<img src=" + gif + ">");
+                var image = $("<img src=" + gif + " class='gif'>");
                 var rating = results[i].rating;
                 var gif = results[i].images.downsized.url;
+                image.attr("data-state", "animate");
+                image.attr("data-animate", results[i].images.downsized.url);
+                image.attr("data-still", results[i].images.downsized_still.url);
                 newDiv.append(text);
                 newDiv.append(image);
                 gifBox.prepend(newDiv);
+                blankSpace.hide();
             }
         });
 
 };
+
+$(".gif").on("click", function() {
+    var state = $(this).attr("data-state")
+    if (state === "animate") {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    }
+    else {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    }
+    console.log(this);
+});
 
 $("#add-food").on("click", function (event) {
     event.preventDefault();

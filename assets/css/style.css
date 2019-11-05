@@ -1,3 +1,36 @@
 body {
     background-image: url(../images/cork-board.png);
 }
+
+button {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#food-input {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#gif-box {
+    border: black solid 5px;
+    background-color: lightgrey;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.blank {
+    color: lightgrey;
+}
+
+.gif {
+    display: block;
+    margin: auto;
+    width: 90%;
+}
