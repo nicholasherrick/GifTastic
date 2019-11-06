@@ -92,9 +92,9 @@ $(document.body).on("click", ".gif", function() {
 });
 
 // Adds new buttons using the input from the add buttons form
-$("#add-food").on("click", function (event) {
+$("#add-value").on("click", function (event) {
     event.preventDefault();
-    var value = $("#food-input").val().trim();
+    var value = $("#value-input").val().trim();
     if (topics.indexOf(value) == -1) {
         topics.push(value);
     }
@@ -102,6 +102,13 @@ $("#add-food").on("click", function (event) {
         $(this).val().empty();
     }
     showButtons();
+});
+
+// Lets you press enter to add new button
+$("#value-input").keypress(function(event){
+    if (event.which == 13) {
+        $("#add-value").click();
+    }
 });
 
 // Generates one random gif when the random gif button is pressed
