@@ -60,12 +60,17 @@ function getFood() {
                 var newDiv = $("<div>");
                 var gifBox = $("#gif-box");
                 var text = $("<p>").text("Rating: " + rating);
-                var image = $("<img src=" + gif + " class='gif'>");
+                var image = $("<img>");
                 var rating = results[i].rating;
-                var gif = results[i].images.downsized.url;
+                var gif = results[i].images.original.url;
+                var stillGifs = results[i].images.original_still.url;
+                console.log("gif " + gif);
+                console.log("still gif " + stillGifs);
+                image.attr("src", gif);
                 image.attr("data-state", "animate");
-                image.attr("data-animate", results[i].images.downsized.url);
-                image.attr("data-still", results[i].images.downsized_still.url);
+                image.attr("data-animate", gif);
+                image.attr("data-still", stillGifs);
+                image.attr("class", "gif");
                 newDiv.append(text);
                 newDiv.append(image);
                 gifBox.prepend(newDiv);
@@ -75,7 +80,7 @@ function getFood() {
 
 };
 
-$(".gif").on("click", function() {
+$(document.body).on("click", ".gif", function() {
     var state = $(this).attr("data-state")
     if (state === "animate") {
         $(this).attr("src", $(this).attr("data-still"));
@@ -93,6 +98,33 @@ $("#add-food").on("click", function (event) {
     var food = $("#food-input").val().trim();
     topics.push(food);
     showButtons();
+});
+
+$("#add-random").on("click", function() {
+    var apiKey = "rQ6AHv1YvrXWOwMEJYDSe60UnMh4AgIB";
+    var queryURL = "https://api.giphy.com/v1/gifs/random?&api_key=" + apiKey + "&limit=1";
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+        console.log(response);
+        var results = response.data[0];
+        // for (var i = 0; i < results.length; i++) {
+            var newDiv = $("<div>");
+            var gifBox = $("#gif-box");
+            // var text = $("<p>").text("Rating: " + rating);
+            var image = $("<img src=" + gif + " class='gif'>");
+            // var rating = results[i].rating;
+            var gif = results.images.downsized.url;
+            image.attr("data-state", "animate");
+            image.attr("data-animate", results.images.downsized.url);
+            image.attr("data-still", results.images.downsized_still.url);
+            // newDiv.append(text);
+            newDiv.append(image);
+            gifBox.prepend(newDiv);
+            blankSpace.hide();
+        // }
+    });
 });
 
 $(document).on("click", ".new-button", getFood);
