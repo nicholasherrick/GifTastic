@@ -64,6 +64,7 @@ function getFood() {
                 var rating = results[i].rating;
                 var gif = results[i].images.original.url;
                 var stillGifs = results[i].images.original_still.url;
+                text.attr("class", "rating");
                 image.attr("src", gif);
                 image.attr("data-state", "animate");
                 image.attr("data-animate", gif);
