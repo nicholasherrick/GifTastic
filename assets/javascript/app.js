@@ -64,8 +64,6 @@ function getFood() {
                 var rating = results[i].rating;
                 var gif = results[i].images.original.url;
                 var stillGifs = results[i].images.original_still.url;
-                console.log("gif " + gif);
-                console.log("still gif " + stillGifs);
                 image.attr("src", gif);
                 image.attr("data-state", "animate");
                 image.attr("data-animate", gif);
@@ -102,28 +100,25 @@ $("#add-food").on("click", function (event) {
 
 $("#add-random").on("click", function() {
     var apiKey = "rQ6AHv1YvrXWOwMEJYDSe60UnMh4AgIB";
-    var queryURL = "https://api.giphy.com/v1/gifs/random?&api_key=" + apiKey + "&limit=1";
+    var queryURL = "https://api.giphy.com/v1/gifs/random?&api_key=" + apiKey;
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response) {
         console.log(response);
-        var results = response.data[0];
-        // for (var i = 0; i < results.length; i++) {
-            var newDiv = $("<div>");
-            var gifBox = $("#gif-box");
-            // var text = $("<p>").text("Rating: " + rating);
-            var image = $("<img src=" + gif + " class='gif'>");
-            // var rating = results[i].rating;
-            var gif = results.images.downsized.url;
-            image.attr("data-state", "animate");
-            image.attr("data-animate", results.images.downsized.url);
-            image.attr("data-still", results.images.downsized_still.url);
-            // newDiv.append(text);
-            newDiv.append(image);
-            gifBox.prepend(newDiv);
-            blankSpace.hide();
-        // }
+        var results = response.data;
+        var newDiv = $("<div>");
+        var gifBox = $("#gif-box");
+        var image = $("<img>");
+        var gif = results.images.original.url;
+        image.attr("src", gif);
+        image.attr("data-state", "animate");
+        image.attr("data-animate", results.images.original.url);
+        image.attr("data-still", results.images.original_still.url);
+        image.attr("class", "gif");
+        newDiv.append(image);
+        gifBox.prepend(newDiv);
+        blankSpace.hide();
     });
 });
 
