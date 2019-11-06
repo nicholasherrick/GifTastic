@@ -38,6 +38,11 @@ button {
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
+    width: 100%;
+}
+
+input::placeholder {
+    font-size: 18px;
 }
 
 #gif-box {
