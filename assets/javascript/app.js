@@ -62,13 +62,13 @@ function getFood() {
                 var text = $("<p>").text("Rating: " + rating);
                 var image = $("<img>");
                 var rating = results[i].rating;
-                var gif = results[i].images.original.url;
-                var stillGifs = results[i].images.original_still.url;
+                var gif = results[i].images.original_still.url;
+                var animatedGifs = results[i].images.original.url;
                 text.attr("class", "rating");
                 image.attr("src", gif);
-                image.attr("data-state", "animate");
-                image.attr("data-animate", gif);
-                image.attr("data-still", stillGifs);
+                image.attr("data-state", "still");
+                image.attr("data-animate", animatedGifs);
+                image.attr("data-still", gif);
                 image.attr("class", "gif");
                 newDiv.append(text);
                 newDiv.append(image);
@@ -81,13 +81,13 @@ function getFood() {
 
 $(document.body).on("click", ".gif", function() {
     var state = $(this).attr("data-state")
-    if (state === "animate") {
-        $(this).attr("src", $(this).attr("data-still"));
-        $(this).attr("data-state", "still");
-    }
-    else {
+    if (state === "still") {
         $(this).attr("src", $(this).attr("data-animate"));
         $(this).attr("data-state", "animate");
+    }
+    else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
     }
     console.log(this);
 });
@@ -116,9 +116,9 @@ $("#add-random").on("click", function() {
         var newDiv = $("<div>");
         var gifBox = $("#gif-box");
         var image = $("<img>");
-        var gif = results.images.original.url;
+        var gif = results.images.original_still.url;
         image.attr("src", gif);
-        image.attr("data-state", "animate");
+        image.attr("data-state", "still");
         image.attr("data-animate", results.images.original.url);
         image.attr("data-still", results.images.original_still.url);
         image.attr("class", "gif");

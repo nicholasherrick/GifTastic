@@ -13,6 +13,26 @@ button {
     margin-bottom: 20px;
 }
 
+#add-food {
+    width: 100%;
+}
+
+#add-random {
+    width: 100%;
+}
+
+#clear-gifs {
+    width: 100%;
+}
+
+#clear-buttons {
+    width: 100%;
+}
+
+#clear-all {
+    width: 100%;
+}
+
 #food-input {
     margin-top: 20px;
     margin-left: 20px;
@@ -31,6 +51,7 @@ button {
 
 .blank {
     color: lightgrey;
+    text-align: center;
 }
 
 .gif {
