@@ -95,7 +95,12 @@ $(document.body).on("click", ".gif", function() {
 $("#add-food").on("click", function (event) {
     event.preventDefault();
     var food = $("#food-input").val().trim();
-    topics.push(food);
+    if (topics.indexOf(food) == -1) {
+        topics.push(food);
+    }
+    else {
+        $(this).val().empty();
+    }
     showButtons();
 });
 
