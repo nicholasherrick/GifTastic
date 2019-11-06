@@ -52,6 +52,7 @@ input::placeholder {
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .blank {
@@ -63,7 +64,8 @@ input::placeholder {
     display: block;
     margin: auto;
     width: 90%;
-    margin-top: 50px;
+    margin-top: 35px;
+    margin-bottom: 25px;
 }
 
 .rating {
