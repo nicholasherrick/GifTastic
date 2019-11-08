@@ -2,6 +2,10 @@ body {
     background-image: url(../images/congruent_pentagon.png);
 }
 
+#header {
+    width: 100%;
+}
+
 #title {
     font-size:100px;
     font-weight: bold;

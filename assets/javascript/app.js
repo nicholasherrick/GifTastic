@@ -58,9 +58,9 @@ function getValue() {
             for (var i = 0; i < results.length; i++) {
                 var newDiv = $("<div>");
                 var gifBox = $("#gif-box");
+                var rating = results[i].rating;
                 var text = $("<p>").text("Rating: " + rating);
                 var image = $("<img>");
-                var rating = results[i].rating;
                 var gif = results[i].images.original_still.url;
                 var animatedGifs = results[i].images.original.url;
                 text.attr("class", "rating");
